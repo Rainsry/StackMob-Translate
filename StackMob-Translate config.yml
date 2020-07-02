@@ -1,0 +1,350 @@
+# StackMob-Translate of Chinese
+# StackMob 5.0 Configuration file - by antiPerson and contributors.
+#
+# Most options can be customised for specific entity types, for details about this, see the end of this file.
+# Asterisk meaning:
+# (*) This option cannot be overridden in the 'custom' section at the end of this file.
+# (**) The following option requires the use of Paper (https://papermc.io) because the API needed is not in Spigot.
+#
+# If the comments have been removed, you can find a version with comments at https://github.com/Nathat23/StackMob-5/tree/master/src/main/resources
+
+# StackMob 5.0配置文件-由antiPerson和贡献者们提供。
+# 翻译汉化：Rainsry
+# 大多数选项可以针对特定的生物类型进行自定义，有关详细信息，请参见此文件的末尾。
+# 星号（*）的意义：
+# （*）一个星号：一个*中的选项中的内容不能出现在此文件结尾的 “Custom” 中。
+# （**）两个星号：两个*中的需要需要使用 Paper（https://papermc.io），因为所需的API不在spigot中
+# 如果已删除注释，则可以在GitHub中找到含注释的版本 https://github.com/Nathat23/StackMob-5/tree/master/src/main/resources
+stack:
+  # The maximum size that a stack can have.
+  # 一个堆叠后生物可以合并的最大数量。
+  max-size: 30
+  # How often entities should be checked for stacking (in ticks. 20 ticks = 1 second) (*)
+  # 应该多久检查一次生物的堆叠情况（以ticks为单位。20个ticks = 1秒钟）（*）
+  interval: 100
+  # The area around an entity for which applicable stacks should be found.
+  # Format: [(x cord),(y cord),(z cord)]
+  # 对生物进行堆叠的检测范围是多少
+  # 格式：merge-range: [x ,z ,y ] （xz为横向半径 y为纵向半径）
+  merge-range: [10,10,10]
+  # Only begin to stack entities when this amount of entities are nearby.
+  # 仅在生物数量达到或超过所设定的值时才开始堆叠生物
+  # 格式：amount: 数量
+  threshold:
+    enabled: true
+    amount: 5
+
+# Names of worlds where there should be no stacking
+# 不进行生物堆叠的世界的名称
+# 默认情况为黑名单，若想使用白名单，则将“worlds-blacklist-inbert: false ”设置为“true”
+# 意为变为白名单
+# 使用格式：worlds-blacklist: [世界名]
+worlds-blacklist: []
+worlds-blacklist-invert: false
+# Types of entity which should not stack
+# 不进行堆叠的生物种类
+# 使用格式：types-blacklist: [生物名]
+types-blacklist: [VILLAGER]
+types-blacklist-invert: false
+# If the entity's spawns reason is listed below, do not stack.
+# 如果生物的生成原因是下方列表中所有的，则该生物将不会进行堆叠
+reason-blacklist: []
+reason-blacklist-invert: false
+
+display-name:
+  # The formatting of the name tag which is shown when the stack size is above the threshold.
+  # Placeholders:
+  # %type% - the entity's type
+  # %size% - the size of the stack
+  # 有堆叠生物时堆叠的主体显示的名称
+  # 占位符：
+  # %type% - 生物的类型
+  # %size% - 堆叠的数量
+  format: '&a%type% &d(%size%)'
+  # Whether the display tag can only be seen when the player targets the entity.
+  # Mode:
+  # ALWAYS - The tag will always be visible as long as the entity is loaded.
+  # HOVER - The tag will only be visible when the player hovers their crosshair on the entity.
+  # NEARBY - The tag will only be visible when the player is in range of the entity. (more resource intensive, requires ProtocolLib on 1.15 servers)
+  # 名称是否仅在玩家将该生物作为目标时才能看到。
+  # 模式：
+  # ALWAYS - 只要生物已加载，名称就始终可见。
+  # HOVER  - 仅当玩家将十字准星悬停在生物上时，名称才可见。
+  # NEARBY - 仅当玩家生物范围内时，名称才可见。 （此选项需要更多资源，且在1.15服务器上需要ProtocolLib）
+  visibility: NEARBY
+  # Options for when 'NEARBY' is used above. (*)
+  # 上方设置使用“ NEARBY” 时的选项。（*）
+  nearby:
+    # The range from which the tag should be visible.
+    # Format: [(x cord),(y cord),(z cord)]
+    # 标签可见的范围。
+    # 格式：[X , Z , Y ]
+    range: [12,6,12]
+    # How often (in ticks) the tag visibility status of an entity should be updated. (20 ticks = 1 second)
+    # 生物的名称可见性状态应多久更新一次（以ticks为单位，20 ticks = 1 秒钟）
+    interval: 20
+  # Don't show the tag if the stack size of this entity if it is equal to or below the value specified.
+  # 如果此生物的堆叠数量等于或小于指定的值，则不显示标签。
+  threshold: 1
+
+# Whether entity specific traits (eg. profession, colour) should be segregated (*)
+# 是否应区分生物的特定特征（例如，职业，肤色）（*）
+traits:
+  sheep-color: true         # 是否保留可爱的羊咩咩的羊毛颜色
+  sheep-sheared: true       # 是否保留可爱的被剪过羊毛的羊咩咩
+  slime-size: true          # 是否保留可爱的史莱姆的尺寸大小
+  horse-color: true         # 是否保留不同马的皮毛颜色
+  llama-color: true         # 是否保留不同可爱的羊驼的颜色
+  parrot-variant: true      # 是否保留不同鹦鹉的种类
+  drowned-hand-item: true   # 是否掉落怪物（如僵尸）手中持有的物品
+  age: true                 # 是否维持堆叠生物的不同年龄
+  breed-mode: true          # 是否能进行繁殖
+  love-mode: true           # 是否能进入恋爱/爱情模式（牛/猪/羊……）
+  cat-type: true            # 是否保留猫的不同类型
+  mooshroom-variant: true   # 是否保留不同蘑菇牛的种类
+  fox-type: true            # 是否保留不同可爱的小狐狸的种类
+  bee-nectar: true          # 堆叠后的蜜蜂是否能进行采蜜
+  bee-stung: true           # 堆叠后的蜜蜂是否能蜇人
+  zoglin-baby: true         # 猪宝宝是否能进行堆叠
+  piglin-baby: true         # 疣猪兽的宝宝是否能进行堆叠
+  leashed: true             # 堆叠后的生物是够能被栓绳操作
+
+# Prevent stacked mobs from targeting players.
+# Similar to no-ai, but allows for movement of entities.
+# 是否防止堆叠后的怪物攻击玩家
+# 类似于将怪物变成没有AI的生物，但是可以进行移动
+# 下方的“enable:false”设置为“false”时，即为进行堆叠后的怪物会攻击玩家；设置为“true”时，即为进行堆叠后的怪物不会攻击玩家
+disable-targeting:
+  enabled: false
+  # If the entity's type is listed below, do not disable targeting.
+  # 如果某生物出现在下方的列表中，则所堆叠的怪物对玩家进行攻击
+  # 格式：type-blacklist: [生物名]
+  type-blacklist: []
+  type-blacklist-invert: false
+  # If the entity's spawns reason is listed below, do not disable targeting (**)
+  # 如果生物的生成原因是下方列表中所有的，则该生物
+  reason-blacklist: []
+  reason-blacklist-invert: false
+
+# What should be done when these entity actions occur. (*)
+# 当这些生物动作发生时应该做些什么。(*)
+events:
+  # When an entity is feed its food.
+  # 当一个生物被喂食后，将进行繁殖时
+  breed:
+    enabled: true
+    # MULTIPLY - spawn as many baby entities possible providing there is enough food fed.
+    # SPLIT - slice off an entity to that it can be bred normally.
+    # 模式：
+    # MULTIPLY - 如果有足够的食物喂养，则堆叠的生物尽可能多地进行繁殖。
+    # SPLIT    - 将所堆叠的生物一个个“切割”开来（解除堆叠状态），成为正常的生物，然后进行繁殖
+    mode: MULTIPLY
+  # When an entity is dyed.
+  # 当生物被染色时（比如羊咩咩被染色了）
+  dye:
+    enabled: true
+    # MULTIPLY - dye as many entities possible providing there is enough dye.
+    # SPLIT - slice off an entity to that it can be dyed normally.
+    # 模式：
+    # MULTIPLY - 如果有足够的染料，则会尽可能多的染色
+    # SPLIT    - 将所堆叠的生物一个个“切割”开来（解除堆叠状态），然后进行染色
+    mode: MULTIPLY
+  # When an entity is sheared.
+  # 当一个生物被剪刀进行操作时。（比如羊咩咩被剪羊毛）
+  shear:
+    enabled: true
+    # MULTIPLY - shear as many entities possible providing the shears have enough durability.
+    # SPLIT - slice off an entity to that it can be sheared normally.
+    # 模式：
+    # MOUTIPLY - 只要剪刀有足够的耐久。则会尽可能多地进行剪（羊毛）
+    # SPLIT    - 将所堆叠的生物一个个“切割”开来（解除堆叠状态），然后进行剪（羊毛）处理
+    mode: MULTIPLY
+  multiply:
+    # Chicken eggs and turtle scutes.
+    # （可爱的小鸡生的）鸡蛋和（乌龟）鳞甲
+    drops: true
+    explosion: true
+    slime-split: true
+  divide:
+    nametag: true
+    tame: true
+    # Only bees now
+    # 这里仅仅是关于蜜蜂的配置
+    enter-block: true
+  remove-stack-data:
+    # Should we remove the stack data of an entity that was unstacked as a result of nametag division/split?
+    # Setting this to false will cause entities that were nametagged to potentially become stacked again.
+    # 我们是否应该删除由于命名牌而未进行堆叠的生物的数据（是否堆叠由命名牌标记后的生物）
+    # 将“nametag”设置为“false”时，则将导致被命名牌标记后的生物仍会被堆叠
+    # 设置为“true”时，则被命名牌所标记后的生物不会被堆叠
+    nametag: true
+
+# How entities should die
+# 堆叠后的生物的死亡方式
+death:
+  # Death options:
+  # SINGLE - Only one entity dies.
+  # ALL - Every entity dies.
+  # STEP - A random amount dies.
+  # STEP_DAMAGE - An amount that depends on the damage done dies.
+  #
+  # The priority 1 is highest and 4 is lowest.
+  # If the killed entity is blacklisted, either by type or death reasons, by the highest priority method,
+  # then it will attempt to use the next highest priority death method.
+  # 死亡方式的几种不同选项：
+  #
+  # SINGLE - 在击杀所堆叠的生物时，每次击杀只会死亡一个生物
+  # ALL    - 在击杀所堆叠的生物时，会一次性杀死堆叠生物中包含的全部生物
+  # STEP   - 在击杀所堆叠的生物时，每次击杀所死亡的生物是随机的
+  # STEP_DAMAGE - 在击杀所堆叠的生物时，每次击杀所死亡的生物取决于伤害大小
+  #
+  # 此配置中 1 为最高优先级， 4 为最低优先级
+  # 请注意，此处的优先级（priority）是从 1 到 4 依次执行
+  # 插件将使用最高优先级执行堆叠生物的死亡方式，
+  # 如果生物的死亡原因/生物的类型处于黑名单中，将尝试使用下一个优先级的死亡方式，直到成功执行. 或者全部失败。
+  SINGLE:
+    priority: 4
+    reason-blacklist: []
+    reason-blacklist-invert: false
+    type-blacklist: []
+    type-blacklist-invert: false
+  ALL:
+    priority: 3
+    reason-blacklist: []
+    reason-blacklist-invert: false
+    type-blacklist: []
+    type-blacklist-invert: false
+  STEP:
+    priority: 2
+    reason-blacklist: []
+    reason-blacklist-invert: false
+    type-blacklist: []
+    type-blacklist-invert: false
+    max-step: 5
+    min-step: 1
+  STEP_DAMAGE:
+    priority: 1
+    reason-blacklist: []
+    reason-blacklist-invert: false
+    type-blacklist: []
+    type-blacklist-invert: false
+
+# Multiply entity drops on entity death.
+# 生物死亡时，生物掉落的物品是否乘以堆叠的数量
+drops:
+  enabled: true
+  use-loot-tables: true
+  # If each mob should only drop one of the items in the list.
+  # 如果每个怪物死亡时只会掉落列表中的一项物品
+  one-per-stack: []
+  one-per-stack-invert: false
+  # Items that should not be dropped.
+  # 生物死亡时不会掉落的物品
+  item-blacklist: []
+  item-blacklist-invert: false
+  # Death reasons that should not mean that drops are multiplied.
+  # 生物死亡时不会掉落乘以数量时的死亡原因
+  reason-blacklist: []
+  reason-blacklist-invert: false
+  # Types of entity for which drops should not be dropped for.
+  # 死亡时不会掉落物品的生物种类
+  type-blacklist: []
+  type-blacklist-invert: false
+
+# Multiply entity experience on entity death.
+# 生物死亡时，生物掉落的经验是否乘以堆叠的数量
+experience:
+  enabled: true
+  # The bounds that should be used for the random multiplier.
+  # 对掉落经验时进行随机乘数的限制范围（最小范围/最大范围）
+  multiplier-min: 0.5
+  multiplier-max: 0.8
+  # Types of entity for which exp should not be dropped for.
+  # 死亡时不会掉落经验的生物种类
+  type-blacklist: []
+  type-blacklist-invert: false
+
+# Multiply the player stats which can be seen by the player from the game menu.
+# 乘以玩家可以从游戏菜单看到的玩家统计数据。
+player-stats: true
+
+# If specific entities should have a waiting time before their first stack.
+# Designed for monster grinders etc.
+# 是否设置特定生物进行堆叠前，有一段等待时间
+# 用于刷怪塔等设施（防止生成的怪物在空中掉落时进行堆叠）
+wait-to-stack:
+  enabled: true
+  # For (x) times the stack task fires after spawn, don't stack this entity.
+  # 在生物生成（X）times 后，才会开始对该生物进行堆叠
+  wait-time: 5
+  # Entity types that this should work for.
+  # 以下是适用于此设置（延迟堆叠）的生物
+  types-whitelist:
+    - ZOMBIE
+    - SKELETON
+    - PIG_ZOMBIE
+    - CREEPER
+    - ENDERMAN
+  types-whitelist-invert: false
+  # Spawn reasons that this should work for.
+  # 由刷怪笼而生成的生物也会进行延迟堆叠
+  reasons-whitelist:
+    - SPAWNER
+  reasons-whitelist-invert: false
+
+# Enable/disable integration with other plugins. (*)
+# 启用/禁用与其他插件的挂钩组合。（*）
+hooks:
+  # Allows the custom 'entity-stacking' flag to be used in worldguard regions.
+  # 允许自定义 “生物堆叠” 适用于worldguard区域。
+  worldguard: true
+  mythicmobs:
+    enabled: true
+    blacklist: []
+    blacklist-invert: false
+  # Prevent citizens npcs from stacking.
+  # 是否防止 Citizens NPC 进行堆叠
+  citizens: true
+  # Prevent stacked entities from giving mcmmo experience.
+  # 是否防止堆叠的生物提供 MCMMO 经验
+  mcmmo: true
+  # Prevent stacked entities from giving job payments.
+  # 是否防止堆叠后的生物提供“job payment” 
+  jobs: true
+  # Allows the use of ProtocolLib, which is used when the server version is not the native one of the plugin.
+  # 是否允许使用 Protocol Lib
+  protocollib: true
+
+## Some options can be modified for specific entity types. An example is shown below. Remove comments to see this in action.
+## Options and sections with a (*) in the comment preceding cannot be overridden.
+#custom:
+#  # The entity type
+#  CREEPER:
+#    # The option to override. This should be the same as it appears above.
+#    stack:
+#      max-size: 30
+#  SKELETON:
+#    # Entities can also inherit options from other entities, using the 'clone' option preceded by the entity type to clone.
+#    clone: CREEPER
+#    # The cloned custom options can still be overridden.
+#    stack:
+#      max-size: 5
+#
+# 您可以使用下方的配置，针对某些特定生物修改某些选项。示例如下所示（以一只可爱的苦力怕做示例）
+# 在上方所有阐述的配置中，注释中有一个*号的内容，不能在下方出现！
+#custom:
+#  # The entity type 
+#  CREEPER:
+#    # 此处的自定义设置，能覆盖上方所进行的全局设置。
+#    stack:
+#      max-size: 30
+#  SKELETON:
+#    # 生物也可以从其他生物的自定义设置中继承设置，通过“clone”
+#    # “clone”用于复制其他生物的自定义设置，并覆盖之前所定义的值
+#    clone: CREEPER
+#    # “clone” 中的设置，仍然可以在下方"stack"中进行二次重写，并覆盖之前的定义
+#    stack:
+#      max-size: 5
+# 设置好之后，你就会发现，苦力怕的最大堆叠数量变成了5个
+# 好啦，翻译到这里就结束了~如果某处翻译有误，请第一时间在MCBBS通知我
+# 我会给予1人气20金粒的奖励~
